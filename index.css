@@ -19,15 +19,9 @@ body {
     text-decoration: none;
 }
 .glow {
-    background: linear-gradient(90deg, rgb(0, 255, 221), rgb(0, 26, 255), rgb(255, 0, 98));
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    --transition-time: 5s;
+    color: #B621FE;
     font-weight: bold;
     font-size: 40px;
-    animation: text-anim var(--transition-time) ease infinite;
 }
 @keyframes text-anim {
     0% {
@@ -84,17 +78,17 @@ body {
     align-items: center;
 }
 .complete {
-    background: -webkit-linear-gradient(left, #B621FE 30%, #1FD1F9 60%);
+    background: #1FD1F9;
     color: black;
     padding: 7%;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 .incomplete {
-    font-style: italic;
-    background: linear-gradient(109.6deg, rgb(235, 173, 254) 11.2%, rgb(254, 150, 150) 90.4%);
+    background: #e5e9eb;
     color: black;
     padding: 7%;
     border-radius: 8px;
@@ -131,7 +125,7 @@ button,input[type="text"] {
     color: black;
 }
 .addr {
-    font-size: 14px;
+    font-size: 12px;
     font-style: italic;
 }
 .btn {
