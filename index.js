@@ -342,13 +342,13 @@ function calcScore() {
       $('#final').append(
         `${final}`)
       if (final < 100) {
-        $('#l').append(`You are <span class="glow">crypto aware</span>`)
+        $('#l').append(`crypto aware`)
       }
       if (final >= 100 && final < 600) {
-        $('#l').append(`You are <span class="glow">crypto competent</span>`);
+        $('#l').append(`crypto competent`);
       }
       if (final >= 600) {
-        $('#l').append(`You are <span class="glow">crypto forward</span>`);
+        $('#l').append(`crypto forward`);
       }
     }
   }, 3900);
