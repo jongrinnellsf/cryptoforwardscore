@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+    font-family: "Avenir", "Helvetica", sans-serif;
+    color: white;
+}
+body {
+    background: url("z.svg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: black;
+}
+.no-bullets {
+    list-style: none;
+    cursor: pointer;
+}
+.complete>a {
+    text-decoration: none;
+}
+.glow {
+    background: linear-gradient(90deg, rgb(0, 255, 221), rgb(0, 26, 255), rgb(255, 0, 98));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    --transition-time: 5s;
+    font-weight: bold;
+    font-size: 40px;
+    animation: text-anim var(--transition-time) ease infinite;
+}
+@keyframes text-anim {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.m {
+    font-size: 34px;
+}
+.s {
+    font-size: 24px;
+}
+.gradient-text {
+    background: -webkit-linear-gradient(left, #B621FE 30%, #1FD1F9 60%);
+    font-weight: bold;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.score-container {
+    padding: 3%;
+    background-color: rgb(39, 46, 43, 0.7);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 1 40%;
+}
+.task-container {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 3% 3% 3%;
+}
+.spotlight {
+    font-weight: bold;
+    color: #1FD1F9;
+}
+.t {
+    max-height: 18px;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+    padding: 3px 0 0 4px;
+}
+.aligned {
+    display: flex;
+    align-items: center;
+}
+.complete {
+    background: -webkit-linear-gradient(left, #B621FE 30%, #1FD1F9 60%);
+    color: black;
+    padding: 7%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.incomplete {
+    font-style: italic;
+    background: linear-gradient(109.6deg, rgb(235, 173, 254) 11.2%, rgb(254, 150, 150) 90.4%);
+    color: black;
+    padding: 7%;
+    border-radius: 8px;
+}
+.g {
+    font-size: 24px;
+    border-radius: 15px;
+    padding: 3%;
+    margin: 0;
+    background-color: rgb(39, 46, 43, 0.7);
+    text-align: left;
+}
+.load {
+    max-height: 50px;
+    margin: 10%;
+}
+.about {
+    padding: 3% 3%;
+    text-align: left;
+}
+.scale-down {
+    width: 50%;
+}
+div.window.scale-down {
+    margin-left: auto;
+    margin-right: auto;
+}
+button,input[type="text"] {
+    padding: 2%;
+    margin: 1%;
+    width: 100%;
+    border-radius: 15px;
+    border: 1px solid black;
+    color: black;
+}
+.addr {
+    font-size: 14px;
+    font-style: italic;
+}
+.btn {
+    font-size: 20px;
+    width: 50%;
+    height: 60px;
+    background: -webkit-linear-gradient(left, #B621FE 30%, #1FD1F9 60%);
+    color: white;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+}
+.big {
+    font-size: 100px;
+    font-weight: bold;
+}
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.abt {
+    padding: 0% 1% 1% 0%;
+    margin-top: 0.5%;
+}
+.le {
+    padding: 0% 0% 0% 1%;
+    margin-top: 0.5%;
+}
+.header {
+    font-size: 90px;
+    font-weight: bold;
+}
+.container {
+    text-align: center;
+}
+.error-message {
+    color: red;
+}
+.hidden {
+    display: none;
+}
+input[type="checkbox"] {
+    display: none;
+}
+.flex-grid-thirds {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    padding: 1%;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+@media (max-width: 1130px) {
+    .score-container, .task-container {
+        width: 100%;
+        padding: 3%;
+    }
+}
+table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+    margin-top: 3%;
+}
+.b {
+    padding-left: 5%;
+}
+table th, table td {
+    padding: 12px 12px;
+}

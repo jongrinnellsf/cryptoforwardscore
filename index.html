@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+    <script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
+    <script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crypto Forward Score</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <link rel="icon" type="image/x-icon" href="cf.png">
+</head>
+<body>
+    <div class="nav">
+        <p class="m gradient-text le no-bullets" id="refresh">crypto forward score</p>
+        <p id="about" class="abt no-bullets">About</p>
+    </div>
+    <div class="container">
+        <div id="not-about">
+            <h1 class="header">Are you <span class="gradient-text"> crypto forward</span>?</h1>
+            <p class="subtitle s">Enter up to 3 ETH addresses to guage your crypto proficiency<p>
+                    <div class="window scale-down" id="form-parent">
+                        <div>
+                            <section>
+                                <form id="js-form">
+                                    <input type="text" name="search-term" id="js-search-term" minlength="2"
+                                        class="uppercase" placeholder="0x..."><br>
+                                    <input type="text" name="search-term" id="js-search-term2" minlength="2"
+                                        class="uppercase" placeholder="0x..."><br>
+                                    <input type="text" name="search-term" id="js-search-term3" minlength="2"
+                                        class="uppercase" placeholder="0x..."><br>
+                            </section>
+                            <section class="field-row" style="justify-content: flex-end; padding-top: 10px">
+                                <input class="btn" type="submit" value="Calculate">
+                            </section>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="js-error-message" class="error-message"></div>
+                    <div id="load" class="hidden"><img src="loading.gif" alt="loading" class="load"></div>
+        </div>
+        <div id="about-text" class="hidden about">
+            <h2> What is it is, why it matters</h2>
+            <p>Being crypto forward means you understand and use crypto. This matters because more crypto usage means
+                more economic freedom.</p>
+            <h2> How it works</h2>
+            <p>It takes up 3 wallet addresses, looks at all the wallet(s) transactions accross ethereum and polygon,
+                and awards points for sustained transaction frequency and completion of specific actions on-chain (e.g.
+                swap tokens, bridge tokens, etc.).
+                Etherscan's free API and <a target="blank" href="https://etherscan.io/labelcloud">labeling feature</a>
+                (contract addresses) provide the data. All data and calculations are verifiable on the blockchain.
+            </p>
+            <h2> How scoring works</h2>
+            <p>The scoring formula is computed as follows: <b>(activity period / 365) * (number of transactions) *
+                    (tasks completed)</b></p>
+            <li>Activitiy period: the number of days between your earliest and most recent transaction. When divided by
+                365 it will round up to the nearest whole number.</li>
+            <li>Tasks: a list of curated actions one can take, which increases one's score if completed</li>
+            <li>Number of transactions: the number of transactions for a given address</li>
+            <h2> How leveling works</h2>
+            <p>You'll fit into 1 of 3 crypto profiency levels based on your score:</p>
+            <ol>
+                <li>Crypto aware: 0-99</li>
+                <li>Crypto competent: 100-599</li>
+                <li>Crypto forward: 600-850+</li>
+            </ol>
+        </div>
+        <section id="results" class="hidden">
+            <div class="flex-grid-thirds">
+                <div class="score-container">
+                    <div>
+                        <canvas id="chart"></canvas>
+                        <div id="final" class="big"></div>
+                        <div id="l" class="s"></div>
+                    </div>
+                    <p id="addresses" class="addr"> </p>
+                </div>  
+                <div class="task-container">
+                    <div id="statement">
+                    </div>
+                    <table>
+                        <thead>
+                            <tr class="s">
+                                <th>Actions</th>
+                                <th>Status</th>
+                                <th class="b">Next steps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input id="checkbox1" type="checkbox" name="chbx-example" disabled>
+                                    <label for="checkbox1" id="cb1label">Transact</label>
+                                </td>
+                                <td>
+                                    <div id="tr" class="aligned"><span class="incomplete">Incomplete</span></div>
+                                </td>
+                                <td class="b">
+                                    <div id="teachTransact" class="hidden"> Show a colleague <a target="blank"
+                                            href="https://www.coinbase.com/wallet/articles/getting-started-mobile">how
+                                            to use crypto</a></div>
+                                    <div id="transact">Learn <a target="blank"
+                                            href="https://www.coinbase.com/learn/crypto-basics/what-is-a-crypto-wallet">how
+                                            crypto wallets work</a></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="checkbox2" type="checkbox" name="chbx-example" disabled>
+                                    <label for="checkbox2" id="cb2label">Swap</label>
+                                </td>
+                                <td>
+                                    <div id="sw" class="aligned"><span class="incomplete">Incomplete</span></div>
+                                </td>
+                                <td class="b">
+                                    <div id="teachSwap" class="hidden"> Show a colleague <a target="blank"
+                                            href="https://www.coinbase.com/learn/wallet/how-to-swap-tokens-with-coinbase-wallet">how
+                                            to swap tokens</a></div>
+                                    <div id="swap">Learn <a target="blank"
+                                            href="https://www.coinbase.com/learn/wallet/how-to-swap-tokens-with-coinbase-wallet">how
+                                            to swap tokens</a></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="checkbox3" type="checkbox" name="chbx-example" disabled>
+                                    <label for="checkbox3" id="cb3label">Bridge</label>
+                                </td>
+                                <td>
+                                    <div id="br" class="aligned"><span class="incomplete">Incomplete</span></div>
+                                </td>
+                                <td class="b">
+                                    <div id="teachBridge" class="hidden"> Show a colleague <a target="blank"
+                                            href="https://help.coinbase.com/en/wallet/bridging">how to bridge tokens</a>
+                                    </div>
+                                    <div id="polygon">Learn <a target="blank"
+                                            href="https://help.coinbase.com/en/wallet/bridging">how to bridge tokens</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="checkbox4" type="checkbox" name="chbx-example" disabled>
+                                    <label for="checkbox4" id="cb4label">Lend/borrow/earn</label>
+                                </td>
+                                <td>
+                                    <div id="le" class="aligned"><span class="incomplete">Incomplete</span></div>
+                                </td>
+                                <td class="b">
+                                    <div id="teachDefi" class="hidden">Show a colleague <a target="blank"
+                                            href="https://www.coinbase.com/learn/wallet/how-to-get-started-in-defi">how
+                                            defi works</a> </div>
+                                    <div id="aave">Learn <a target="blank"
+                                            href="https://help.coinbase.com/en/coinbase/trading-and-funding/coinbase-earn/defi-yield">how
+                                            to earn yield</a></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="checkbox5" type="checkbox" name="chbx-example" disabled>
+                                    <label for="checkbox5" id="cb5label">Own an ENS name</label>
+                                </td>
+                                <td>
+                                    <div id="ens" class="aligned"><span class="incomplete">Incomplete</span></div>
+                                </td>
+                                <td class="b">
+                                    <div id="teachEns" class="hidden"> Show a colleague <a target="blank"
+                                            href="https://app.ens.domains/">how
+                                            to buy an ENS name</a></div>
+                                    <div id="ens_domore">Learn <a target="blank"
+                                            href="https://www.alchemy.com/overviews/buy-ens-domain#how-do-you-buy-an-ens-name-2">how
+                                            to buy an ENS name</a></div>
+                                </td>
+                            </tr>
+                            <tr id="cu" class="hidden">
+                                <td>
+                                    <input id="checkbox6" type="checkbox" name="chbx-example" disabled>
+                                    <label for="checkbox6" id="cb6label">Complete a CryptoU challenge</label>
+                                </td>
+                                <td>
+                                    <div id="cryptoU" class="aligned"><span class="incomplete">Incomplete</span></div>
+                                </td>
+                                <td class="b">
+                                    <div id="teachCryptoU" class="hidden">Complete another challenge!</div>
+                                    <div id="cryptoU_domore">Complete a quarterly challenge! </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+    </section>
+</body>
+</html>
