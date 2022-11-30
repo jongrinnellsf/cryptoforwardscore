@@ -100,8 +100,6 @@ body {
     padding: 3%;
     margin: 0;
     background-color: rgb(48, 22, 91, 0.7);
-
-
     text-align: left;
 }
 .load {
@@ -186,9 +184,32 @@ input[type="checkbox"] {
     flex-wrap: wrap;
 }
 @media (max-width: 1130px) {
-    .score-container, .task-container {
-        width: 100%;
+    .score-container {
+        flex: 0 0 100%;
         padding: 3%;
+    }
+    .task-container {
+        padding: 3% 0% 3% 0%;
+    }
+    .nav {
+        padding-top: 1%;
+    }
+    .s {
+        font-size: 16px;
+    }
+    .btn {
+        font-size: 16px;
+        height: 50px;
+    }
+    .scale-down {
+        width: 90%;
+    }
+    .m, .abt, .no-bullets {
+        font-size: 14px;
+    }
+    .header {
+        font-size: 40px;
+        font-weight: bold;
     }
 }
 table {
