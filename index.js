@@ -299,7 +299,7 @@ $(function () {
 });
 function renderNFTs(responseJson) {
   for (let i = 0; i < responseJson.nfts.length; i++) {
-    $('#ens').empty().append(`<span class="complete">Complete</span><span><a target="blank" href="${responseJson.nfts[i].collection.marketplace_pages[0].nft_url}"><img class="t" src="link.png"></a></span>`);
+    $('#ens').empty().append(`<span class="complete">Complete</span><span><a target="blank" href="${responseJson.nfts[i].external_url}"><img class="t" src="link.png"></a></span>`);
     $('#checkbox5').prop('checked', true);
     $('#ens_domore').addClass('hidden');
     $('#teachEns').removeClass('hidden');
@@ -308,11 +308,11 @@ function renderNFTs(responseJson) {
 function renderCryptoU(responseJson) {
   for (let i = 0; i < responseJson.nfts.length; i++) {
     if (responseJson.count >= 1) {
-      $('#cu').removeClass('hidden');
-      $('#cryptoU').empty().append(`<span class="complete">Complete</span><span><a target="blank" href="${responseJson.nfts[i].collection.marketplace_pages[0].nft_url}"><img class="t" src="link.png"></a></span>`);
-      $('#checkbox6').prop('checked', true);
-      $('#cryptoU_domore').addClass('hidden');
-      $('#teachCryptoU').removeClass('hidden');
+    $('#cu').removeClass('hidden');
+    $('#cryptoU').empty().append(`<span class="complete">Complete</span><span><a target="blank" href="${responseJson.nfts[i].collection.marketplace_pages[0].nft_url}"><img class="t" src="link.png"></a></span>`);
+    $('#checkbox6').prop('checked', true);
+    $('#cryptoU_domore').addClass('hidden');
+    $('#teachCryptoU').removeClass('hidden');
     }
   }
 }
@@ -389,7 +389,6 @@ var config = {
     layout: {
       padding: {
         bottom: 15,
-        // top: 40
       }
     },
     needle: {
