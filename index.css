@@ -45,7 +45,7 @@ body {
 }
 .score-container {
     padding: 3%;
-    background-color: rgb(48, 22, 91, 0.7);
+    background-color: #13191C;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -94,7 +94,7 @@ body {
     border-radius: 15px;
     padding: 3%;
     margin: 0;
-    background-color: rgb(48, 22, 91, 0.7);
+    background-color: #13191C;
     text-align: left;
 }
 .load {
